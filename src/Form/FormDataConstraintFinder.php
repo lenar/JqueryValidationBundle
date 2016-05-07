@@ -131,11 +131,22 @@ class FormDataConstraintFinder
             $propertyName = end($elements);
         }
 
-        $constraintGroups = ['Default'];
+        $constraintGroups = [];
         $parent = $form->getParent();
         if (null !== $parent) {
-            $constraintGroups = $parent->getConfig()->getOptions()['validation_groups'];
+            do {
+                $validationGroups = $parent->getConfig()->getOptions()['validation_groups'];
+                // validation is disabled for form
+                if (false === $validationGroups) {
+                    break;
+                }
+                $constraintGroups = array_merge($constraintGroups, $validationGroups ?? []);
+            } while (null !== ($parent = $parent->getParent()));
         }
+        if (!$constraintGroups) {
+            $constraintGroups[] = 'Default';
+        }
+        $constraintGroups = array_unique($constraintGroups);
 
         // Find property constraints
         return $this->findPropertyConstraints($metadata, $propertyName, $propertyCascadeOnly, $constraintGroups);
