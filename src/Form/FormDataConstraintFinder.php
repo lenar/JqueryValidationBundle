@@ -131,11 +131,17 @@ class FormDataConstraintFinder
             $propertyName = end($elements);
         }
 
+        $constraintGroups = ['Default'];
+        $parent = $form->getParent();
+        if (null !== $parent) {
+            $constraintGroups = $parent->getConfig()->getOptions()['validation_groups'];
+        }
+
         // Find property constraints
-        return $this->findPropertyConstraints($metadata, $propertyName, $propertyCascadeOnly);
+        return $this->findPropertyConstraints($metadata, $propertyName, $propertyCascadeOnly, $constraintGroups);
     }
 
-    private function findPropertyConstraints(ClassMetadata $metadata, $propertyName, $cascadingOnly = false)
+    private function findPropertyConstraints(ClassMetadata $metadata, $propertyName, $cascadingOnly, $constraintGroups)
     {
         $constraintCollection = new ConstraintCollection();
 
@@ -155,14 +161,17 @@ class FormDataConstraintFinder
                 continue;
             }
 
-            // Add the actual constraints
-            $constraintCollection->addCollection(
-                new ConstraintCollection($propertyMetadata->getConstraints())
-            );
+            foreach ($constraintGroups as $constraintGroup) {
+                // Add the actual constraints
+                $constraintCollection->addCollection(
+                    new ConstraintCollection($propertyMetadata->findConstraints($constraintGroup))
+                );
+            }
         }
 
         return $constraintCollection;
     }
+
 
     /**
      * Gets the form root data class used by the given form.
