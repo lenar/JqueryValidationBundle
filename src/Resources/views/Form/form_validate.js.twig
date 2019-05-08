@@ -5,6 +5,7 @@
     "use strict";
     var form = $("{{- gen.form_jquery_selector(form) -}}");
     var validator = form.validate({
+        ignore: ".ignore, .select2-input, .select2-offscreen",
         rules: {
             {{- gen.form_rules(fields, enforce_validation_groups) -}}
         },
