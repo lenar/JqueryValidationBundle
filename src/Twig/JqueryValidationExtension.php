@@ -40,13 +40,13 @@ class JqueryValidationExtension extends Twig_Extension
             return '';
         }
         /** @var \Boekkooi\Bundle\JqueryValidationBundle\Form\FormRuleContext $rootContext */
-        $template = 'BoekkooiJqueryValidationBundle:Form:form_validate.js.twig';
+        $template = '@BoekkooiJqueryValidation/Form/form_validate.js.twig';
         $rootContext = $context = $view->vars['rule_context'];
         $rootView = $view;
 
         // The given view is not the root form
         if ($view->parent !== null) {
-            $template = 'BoekkooiJqueryValidationBundle:Form:dynamic_validate.js.twig';
+            $template = '@BoekkooiJqueryValidation/Form/dynamic_validate.js.twig';
             $rootView = FormHelper::getViewRoot($view);
             $rootContext = $rootView->vars['rule_context'];
         }
