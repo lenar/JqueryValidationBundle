@@ -14,9 +14,9 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
+        $treeBuilder = new TreeBuilder('boekkooi_jquery_validation');
 
-        $rootNode = $treeBuilder->root('boekkooi_jquery_validation');
+        $rootNode = $treeBuilder->getRootNode();
         $rootNode->append($this->loadFormNode());
         $rootNode->append($this->loadTwigNode());
 
@@ -25,9 +25,9 @@ class Configuration implements ConfigurationInterface
 
     private function loadFormNode()
     {
-        $treeBuilder = new TreeBuilder();
+        $treeBuilder = new TreeBuilder('form');
 
-        $node = $treeBuilder->root('form');
+        $node = $treeBuilder->getRootNode();
         $node
             ->treatTrueLike(array('enabled' => true, 'additional' => true))
             ->treatFalseLike(array('enabled' => false))
@@ -73,9 +73,9 @@ class Configuration implements ConfigurationInterface
 
     private function loadTwigNode()
     {
-        $treeBuilder = new TreeBuilder();
+        $treeBuilder = new TreeBuilder('twig');
 
-        $node = $treeBuilder->root('twig');
+        $node = $treeBuilder->getRootNode();
         $node
             ->treatTrueLike(array())
             ->treatFalseLike(array())

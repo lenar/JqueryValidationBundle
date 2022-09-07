@@ -4,24 +4,8 @@
     "keywords": [ "jquery", "form", "validation", "validator", "symfony", "twig"],
     "description": "Jquery form validation bundle for symfony 5",
     "require": {
-        "php": ">=5.5",
-        "symfony/framework-bundle": "~2.3|~3.0|~4.0|~5.0"
-    },
-    "require-dev": {
-        "symfony/browser-kit": "~2.3|~3.0|~4.0|~5.0",
-        "symfony/dom-crawler": "~2.3|~3.0|~4.0|~5.0",
-        "symfony/finder": "~2.3|~3.0|~4.0|~5.0",
-        "symfony/yaml": "~2.3|~3.0|~4.0|~5.0",
-        "symfony/css-selector": "~2.3|~3.0|~4.0|~5.0",
-
-        "phpunit/phpunit": "~4.7@stable",
-        "symfony/phpunit-bridge": "~2.7@stable",
-
-        "behat/behat": "~3.0",
-        "behat/mink": "~1.6",
-        "behat/mink-selenium2-driver":  "~1.1",
-        "behat/mink-extension": "~2.0",
-        "behat/symfony2-extension": "~2.0"
+        "php": ">=7.4",
+        "symfony/framework-bundle": "~4.0|~5.0"
     },
     "license": "MIT",
     "authors": [
