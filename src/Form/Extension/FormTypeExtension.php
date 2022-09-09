@@ -11,6 +11,7 @@ use Boekkooi\Bundle\JqueryValidationBundle\Form\Util\FormHelper;
 use Boekkooi\Bundle\JqueryValidationBundle\Validator\ConstraintCollection;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -48,6 +49,11 @@ class FormTypeExtension extends AbstractTypeExtension
         $this->defaultEnabled = $enabled;
         $this->formRuleCompiler = $formRuleCompiler;
         $this->formRuleProcessor = $formRuleProcessor;
+    }
+
+    static function getExtendedTypes(): iterable
+    {
+        return [];
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)

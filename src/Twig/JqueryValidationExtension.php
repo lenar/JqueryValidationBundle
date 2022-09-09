@@ -4,13 +4,15 @@ namespace Boekkooi\Bundle\JqueryValidationBundle\Twig;
 use Boekkooi\Bundle\JqueryValidationBundle\Form\FormRuleContext;
 use Boekkooi\Bundle\JqueryValidationBundle\Form\Util\FormHelper;
 use Symfony\Component\Form\FormView;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 use Twig_Extension;
 use Twig_SimpleFunction;
 
 /**
  * @author Warnar Boekkooi <warnar@boekkooi.net>
  */
-class JqueryValidationExtension extends Twig_Extension
+class JqueryValidationExtension extends AbstractExtension
 {
     /**
      * {@inheritDoc}
@@ -18,9 +20,9 @@ class JqueryValidationExtension extends Twig_Extension
     public function getFunctions()
     {
         return array(
-             new Twig_SimpleFunction(
+             new TwigFunction(
                 'form_jquery_validation',
-                array($this, 'renderJavascript'),
+                array(JqueryValidationExtension::class, 'renderJavascript'),
                 array('needs_environment' => true, 'pre_escape' => array('html', 'js'), 'is_safe' => array('html', 'js'))
             ),
         );

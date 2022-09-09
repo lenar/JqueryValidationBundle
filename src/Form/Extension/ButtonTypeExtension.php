@@ -14,6 +14,12 @@ use Symfony\Component\Form\FormView;
  */
 class ButtonTypeExtension extends AbstractTypeExtension
 {
+
+    static function getExtendedTypes(): iterable
+    {
+        return [];
+    }
+
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         /** @var FormInterface | ClickableInterface $form */
