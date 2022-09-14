@@ -17,7 +17,7 @@ class ButtonTypeExtension extends AbstractTypeExtension
 
     static function getExtendedTypes(): iterable
     {
-        return [];
+        return [ButtonType::class];
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)

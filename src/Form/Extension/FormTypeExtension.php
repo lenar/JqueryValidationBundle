@@ -53,7 +53,7 @@ class FormTypeExtension extends AbstractTypeExtension
 
     static function getExtendedTypes(): iterable
     {
-        return [];
+        return [FormType::class];
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)
