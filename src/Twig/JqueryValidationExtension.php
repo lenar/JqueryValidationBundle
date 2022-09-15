@@ -6,8 +6,8 @@ use Boekkooi\Bundle\JqueryValidationBundle\Form\Util\FormHelper;
 use Symfony\Component\Form\FormView;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Twig_Extension;
-use Twig_SimpleFunction;
+use Twig\Environment;
+
 
 /**
  * @author Warnar Boekkooi <warnar@boekkooi.net>
@@ -22,7 +22,7 @@ class JqueryValidationExtension extends AbstractExtension
         return array(
              new TwigFunction(
                 'form_jquery_validation',
-                array(JqueryValidationExtension::class, 'renderJavascript'),
+                array($this, 'renderJavascript'),
                 array('needs_environment' => true, 'pre_escape' => array('html', 'js'), 'is_safe' => array('html', 'js'))
             ),
         );
@@ -36,7 +36,7 @@ class JqueryValidationExtension extends AbstractExtension
         return 'boekkooi_jquery_validation';
     }
 
-    public function renderJavascript(\Twig_Environment $twig, FormView $view)
+    public function renderJavascript(Environment $twig, FormView $view)
     {
         if (!isset($view->vars['rule_context'])) {
             return '';

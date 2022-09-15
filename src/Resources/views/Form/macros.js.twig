@@ -122,6 +122,6 @@
     {%- if msg.plural is null -%}
         {{- msg.message|trans(msg.parameters, 'validators')|e('js') -}}
     {%- else -%}
-        {{- msg.message|transchoice(msg.plural, msg.parameters|merge({'%count%': msg.plural}), 'validators')|e('js') -}}
+        {{- msg.message|trans(msg.parameters|merge({'%count%': msg.plural}), 'validators')|e('js') -}}
     {%- endif -%}
 {% endmacro %}
