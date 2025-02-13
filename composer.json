@@ -5,7 +5,7 @@
     "description": "Jquery form validation bundle for symfony 5",
     "require": {
         "php": ">=7.4",
-        "symfony/framework-bundle": "~4.0|~5.0"
+        "symfony/framework-bundle": "~4.0|~5.0|~6.0|~7.0"
     },
     "license": "MIT",
     "authors": [
