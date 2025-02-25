@@ -20,7 +20,7 @@ class ButtonTypeExtension extends AbstractTypeExtension
         return [ButtonType::class];
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         /** @var FormInterface | ClickableInterface $form */
         if (!$form instanceof ClickableInterface) {
@@ -40,12 +40,12 @@ class ButtonTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function getExtendedType()
+    public function getExtendedType(): string
     {
         return FormHelper::isSymfony3Compatible() ? ButtonType::class : 'button';
     }
 
-    protected function hasRuleBuilderContext(FormView $view)
+    protected function hasRuleBuilderContext(FormView $view): bool
     {
         return isset($view->vars['rule_builder']) && $view->vars['rule_builder'] instanceof FormRuleContextBuilder;
     }
