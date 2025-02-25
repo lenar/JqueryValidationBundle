@@ -56,7 +56,7 @@ class FormTypeExtension extends AbstractTypeExtension
         return [FormType::class];
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         // Actual form root.
         if ($form->isRoot() && $view->parent === null) {
@@ -87,7 +87,7 @@ class FormTypeExtension extends AbstractTypeExtension
         }
     }
 
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $rootView = FormHelper::getViewRoot($view);
         if (!$this->hasRuleBuilderContext($rootView)) {
@@ -127,7 +127,7 @@ class FormTypeExtension extends AbstractTypeExtension
     /**
      * @inheritdoc
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver): void
     {
         if ($resolver instanceof OptionsResolver && method_exists($resolver, 'setDefault')) {
             $this->configureOptions($resolver);
@@ -146,7 +146,7 @@ class FormTypeExtension extends AbstractTypeExtension
     /**
      * @inheritdoc
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefault('jquery_validation', $this->defaultEnabled);
         $resolver->setAllowedTypes('jquery_validation', array('bool', 'null'));
@@ -155,7 +155,7 @@ class FormTypeExtension extends AbstractTypeExtension
     /**
      * @inheritdoc
      */
-    public function getExtendedType()
+    public function getExtendedType(): string
     {
         return FormHelper::isSymfony3Compatible() ? FormType::class : 'form';
     }
@@ -164,7 +164,7 @@ class FormTypeExtension extends AbstractTypeExtension
      * @param FormView $view
      * @return FormRuleContextBuilder
      */
-    protected function getRuleBuilder(FormView $view)
+    protected function getRuleBuilder(FormView $view): FormRuleContextBuilder
     {
         $viewRoot = FormHelper::getViewRoot($view);
         if (!isset($viewRoot->vars['rule_builder'])) {
@@ -180,7 +180,7 @@ class FormTypeExtension extends AbstractTypeExtension
      * @param FormInterface $form
      * @return ConstraintCollection
      */
-    protected function findConstraints(FormInterface $form)
+    protected function findConstraints(FormInterface $form): ConstraintCollection
     {
         $constraints = new ConstraintCollection();
 
@@ -206,12 +206,12 @@ class FormTypeExtension extends AbstractTypeExtension
         return $constraints;
     }
 
-    protected function hasRuleBuilderContext(FormView $view)
+    protected function hasRuleBuilderContext(FormView $view): bool
     {
         return isset($view->vars['rule_builder']) && $view->vars['rule_builder'] instanceof FormRuleContextBuilder;
     }
 
-    protected function compile($view)
+    protected function compile($view): void
     {
         /** @var FormRuleContextBuilder $ruleBuilder */
         $ruleBuilder = $view->vars['rule_builder'];
@@ -221,13 +221,13 @@ class FormTypeExtension extends AbstractTypeExtension
         $this->compileContext($view, $ruleBuilder);
     }
 
-    private function compileContext(FormView $view, FormRuleContextBuilder $ruleBuilder)
+    private function compileContext(FormView $view, FormRuleContextBuilder $ruleBuilder): void
     {
         $this->formRuleCompiler->compile($ruleBuilder);
         $view->vars['rule_context'] = $ruleBuilder->getRuleContext();
     }
 
-    protected function compileChildContexts(FormView $rootView, FormRuleContextBuilder $rootRuleBuilder)
+    protected function compileChildContexts(FormView $rootView, FormRuleContextBuilder $rootRuleBuilder): void
     {
         $children = $rootView->vars['rule_builder_children'];
         unset($rootView->vars['rule_builder_children']);
