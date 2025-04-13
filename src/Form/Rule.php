@@ -29,7 +29,7 @@ abstract class Rule
      */
     public $conditions;
 
-    public function __construct($name, $options = null, RuleMessage $message = null, array $conditions = array())
+    public function __construct($name, $options = null, ?RuleMessage $message = null, array $conditions = array())
     {
         $this->name = $name;
         $this->options = $options;

@@ -16,7 +16,7 @@ class ConstraintRule extends Rule
      */
     public $groups;
 
-    public function __construct($name, $options = null, RuleMessage $message = null, array $groups = array(Constraint::DEFAULT_GROUP), array $conditions = array())
+    public function __construct($name, $options = null, ?RuleMessage $message = null, array $groups = array(Constraint::DEFAULT_GROUP), array $conditions = array())
     {
         parent::__construct($name, $options, $message, $conditions);
 

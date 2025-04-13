@@ -67,7 +67,7 @@ class CompoundCopyToChildPass implements FormRuleProcessorInterface
         return in_array($type, static::$copyForTypes, true);
     }
 
-    private function registerRulesForChildren(FormRuleContextBuilder $formRuleContext, FormView $view, RuleMessage $message = null)
+    private function registerRulesForChildren(FormRuleContextBuilder $formRuleContext, FormView $view, ?RuleMessage $message = null)
     {
         // Copy parent rules to the children
         $rules = $formRuleContext->get($view);

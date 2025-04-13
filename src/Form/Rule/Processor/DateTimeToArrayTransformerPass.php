@@ -80,7 +80,7 @@ class DateTimeToArrayTransformerPass extends ViewTransformerProcessor
         }
     }
 
-    private function addNumberCheck(FormView $view, RuleCollection $rules, RuleMessage $message = null, array $conditions = array())
+    private function addNumberCheck(FormView $view, RuleCollection $rules, ?RuleMessage $message = null, array $conditions = array())
     {
         if (!$this->useGroupRule && count($conditions) > 0) {
             $rules->set(
