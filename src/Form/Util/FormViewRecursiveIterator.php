@@ -1,12 +1,14 @@
 <?php
 namespace Boekkooi\Bundle\JqueryValidationBundle\Form\Util;
 
+use RecursiveIterator;
+
 class FormViewRecursiveIterator extends \IteratorIterator implements \RecursiveIterator
 {
     /**
      * {@inheritdoc}
      */
-    public function getChildren()
+    public function getChildren(): ?RecursiveIterator
     {
         return new static($this->current());
     }
