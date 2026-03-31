@@ -14,7 +14,7 @@ class RuleCollection extends ArrayCollection
      * @param int|string $key
      * @param Rule $value
      */
-    public function set($key, $value)
+    public function set($key, $value): void
     {
         $this->assertRuleInstance($value);
 
@@ -25,7 +25,7 @@ class RuleCollection extends ArrayCollection
      * {@inheritdoc}
      * @throw LogicException
      */
-    public function add($value)
+    public function add($value): void
     {
         throw new LogicException('RuleCollection must be used as a dictionary');
     }
