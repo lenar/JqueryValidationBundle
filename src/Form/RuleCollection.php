@@ -25,7 +25,7 @@ class RuleCollection extends ArrayCollection
      * {@inheritdoc}
      * @throw LogicException
      */
-    public function add($value)
+    public function add($value): void
     {
         throw new LogicException('RuleCollection must be used as a dictionary');
     }
