@@ -14,7 +14,7 @@ class RuleCollection extends ArrayCollection
      * @param int|string $key
      * @param Rule $value
      */
-    public function set($key, $value)
+    public function set($key, $value): void
     {
         $this->assertRuleInstance($value);
 
