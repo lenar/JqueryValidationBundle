@@ -16,7 +16,7 @@ class FormViewRecursiveIterator extends \IteratorIterator implements \RecursiveI
     /**
      *{@inheritdoc}
      */
-    public function hasChildren()
+    public function hasChildren(): bool
     {
         return $this->current()->count() > 0;
     }
